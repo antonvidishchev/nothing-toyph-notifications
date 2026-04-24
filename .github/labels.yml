@@ -1,0 +1,42 @@
+# Priority labels
+- name: P0-critical
+  color: 'b60205'
+  description: 'Critical priority: production outage or data loss'
+
+- name: P1-high
+  color: 'e11d48'
+  description: 'High priority: significant impact, needs prompt attention'
+
+- name: P2-medium
+  color: 'f97316'
+  description: 'Medium priority: notable issue, schedule for near-term'
+
+- name: P3-low
+  color: 'fbbf24'
+  description: 'Low priority: minor issue or nice-to-have'
+
+# Type labels
+- name: bug
+  color: 'd73a4a'
+  description: "Something isn't working as expected"
+
+- name: feature
+  color: '0075ca'
+  description: 'New feature or enhancement request'
+
+- name: chore
+  color: 'e4e669'
+  description: 'Maintenance, refactoring, or tooling task'
+
+- name: docs
+  color: '0052cc'
+  description: 'Documentation changes only'
+
+# Area labels
+- name: frontend
+  color: '7057ff'
+  description: 'Relates to the React/Vite client'
+
+- name: infra
+  color: 'e4e669'
+  description: 'Relates to CI, deployment, tooling, or configuration'

@@ -1,0 +1,51 @@
+{
+  "name": "toyph-glyph-generator",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Toyph Glyph Generator for Nothing Phone 4a Pro — design glyph patterns for the 13x13 LED matrix",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3101",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run --reporter=verbose",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "vitest run --reporter=verbose --reporter=json --outputFile.json=test-results.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "knip": "knip",
+    "jscpd": "jscpd .",
+    "todo:scan": "leasot \"client/src/**/*.{js,jsx}\" --reporter table || node -e \"\""
+  },
+  "dependencies": {
+    "@scure/base": "^2.2.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "jscpd": "^4.0.8",
+    "jsdom": "^26.1.0",
+    "knip": "^6.2.0",
+    "leasot": "^14.4.0",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.1"
+  }
+}
