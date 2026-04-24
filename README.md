@@ -1,5 +1,7 @@
 # Toyph Glyph Generator
 
+https://antonvidishchev.github.io/nothing-toyph-notifications/
+
 As a Nothing Phone 4(a) Pro owner, I am excited to have the glyph interface on the back of my phone.
 The functionality to create new notifications is, however, not ideal. I can't draw my own glyph (my teenager son has ideas of what to draw, they will never pass the marketplace rules), and while I can create a glyph from a picture - I sometimes want to change a few pixels to make it perfect, but there's no interface for that.
 
