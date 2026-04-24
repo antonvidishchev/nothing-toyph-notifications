@@ -17,6 +17,7 @@ function clearColorModeCookie() {
 
 beforeEach(() => {
   clearColorModeCookie();
+  document.cookie = 'glyph_color_mode=5; path=/';
 });
 
 afterEach(() => {
@@ -152,11 +153,12 @@ describe('GlyphGrid Component', () => {
     expect(activeCell.getAttribute('data-brightness')).toBe('0');
   });
 
-  it('renders a main-screen color mode switch and defaults to 5 Colors', () => {
+  it('renders a main-screen color mode switch and defaults to 2 Colors when no cookie is present', () => {
+    clearColorModeCookie();
     render(<GlyphGrid />);
     expect(screen.getByTestId('main-color-mode-switch')).toBeInTheDocument();
-    expect(screen.getByTestId('main-color-mode-5-button')).toHaveAttribute('aria-checked', 'true');
-    expect(screen.getByTestId('main-color-mode-2-button')).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByTestId('main-color-mode-2-button')).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByTestId('main-color-mode-5-button')).toHaveAttribute('aria-checked', 'false');
   });
 
   it('initializes main-screen color mode from cookie', () => {
