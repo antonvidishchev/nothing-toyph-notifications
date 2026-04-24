@@ -22,7 +22,7 @@ const COLOR_MODE_TWO = '2';
 const COLOR_MODE_MAX_AGE_SECONDS = 31536000;
 
 function readColorModeCookie() {
-  if (typeof document === 'undefined') return COLOR_MODE_FIVE;
+  if (typeof document === 'undefined') return COLOR_MODE_TWO;
 
   const prefix = `${COLOR_MODE_COOKIE_NAME}=`;
   const entry = document.cookie
@@ -30,9 +30,10 @@ function readColorModeCookie() {
     .map((part) => part.trim())
     .find((part) => part.startsWith(prefix));
 
-  if (!entry) return COLOR_MODE_FIVE;
+  if (!entry) return COLOR_MODE_TWO;
   const value = decodeURIComponent(entry.slice(prefix.length));
-  return value === COLOR_MODE_TWO ? COLOR_MODE_TWO : COLOR_MODE_FIVE;
+  if (value === COLOR_MODE_TWO || value === COLOR_MODE_FIVE) return value;
+  return COLOR_MODE_TWO;
 }
 
 function writeColorModeCookie(mode) {

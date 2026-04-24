@@ -235,10 +235,10 @@ describe('VAL-CROSS-002: Crop 2 Colors mode + Confirm → grid receives 2-level 
   });
 });
 
-// ── VAL-CROSS-003: Crop default (5-level) + Confirm → grid receives 5-level values ──
+// ── VAL-CROSS-003: Crop 5 Colors mode + Confirm → grid receives 5-level values ──
 
-describe('VAL-CROSS-003: Crop default (5-level) + Confirm → grid receives 5-level values', () => {
-  it('grid has 5-level quantized values after crop confirm with default settings', async () => {
+describe('VAL-CROSS-003: Crop 5 Colors mode + Confirm → grid receives 5-level values', () => {
+  it('grid has 5-level quantized values after crop confirm in 5 Colors mode', async () => {
     // Configure mock to RESPOND TO the brightness and only2Colors arguments it receives:
     // at default (brightness=50, only2Colors=false) → return 5-level quantized values.
     // This ensures the test reflects actual default control state, not a hardcoded mock.
@@ -256,14 +256,21 @@ describe('VAL-CROSS-003: Crop default (5-level) + Confirm → grid receives 5-le
     });
 
     const container = await openModalAndLoadImage();
-    // No UI interactions — controls remain at defaults (brightness=50, only2Colors=false).
+
+    // Default mode is 2 Colors, so switch to 5 Colors before confirming.
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('color-mode-5-button'));
+    });
+    await act(async () => {
+      vi.advanceTimersByTime(150);
+    });
 
     // Confirm: synchronously recomputes with brightness=50, only2Colors=false → 5-level values
     await act(async () => {
       fireEvent.click(screen.getByTestId('crop-modal-confirm'));
     });
 
-    // All values should be from the 5-level set (default is now 5-level quantized)
+    // All values should be from the 5-level set.
     const activeCells = container.querySelectorAll('[data-active="true"]');
     activeCells.forEach((cell) => {
       const val = Number(cell.getAttribute('data-brightness'));
@@ -286,6 +293,9 @@ describe('VAL-CROSS-006: Manual painting after image upload', () => {
       fireEvent.click(screen.getByTestId('crop-modal-confirm'));
     });
 
+    // Manual editing assertions in this test target 5-color click cycling.
+    fireEvent.click(screen.getByTestId('main-color-mode-5-button'));
+
     const activeCell = container.querySelector('[data-active="true"]');
     expect(activeCell.getAttribute('data-brightness')).toBe('1500');
 
@@ -304,6 +314,9 @@ describe('VAL-CROSS-006: Manual painting after image upload', () => {
     await act(async () => {
       fireEvent.click(screen.getByTestId('crop-modal-confirm'));
     });
+
+    // Manual editing assertions in this test target 5-color click cycling.
+    fireEvent.click(screen.getByTestId('main-color-mode-5-button'));
 
     const activeCell = container.querySelector('[data-active="true"]');
 

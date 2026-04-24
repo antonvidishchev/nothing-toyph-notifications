@@ -25,6 +25,7 @@ function clearColorModeCookie() {
 
 beforeEach(() => {
   clearColorModeCookie();
+  document.cookie = 'glyph_color_mode=5; path=/';
 });
 
 afterEach(() => {
@@ -896,10 +897,11 @@ describe('CropModal — color mode switch', () => {
     expect(screen.getByTestId('color-mode-2-button')).toBeInTheDocument();
   });
 
-  it('defaults to 5 Colors mode', () => {
+  it('defaults to 2 Colors mode when no cookie is present', () => {
+    clearColorModeCookie();
     render(<CropModal isOpen={true} file={mockFile} onClose={vi.fn()} onConfirm={vi.fn()} />);
-    expect(screen.getByTestId('color-mode-5-button')).toHaveAttribute('aria-checked', 'true');
-    expect(screen.getByTestId('color-mode-2-button')).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByTestId('color-mode-2-button')).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByTestId('color-mode-5-button')).toHaveAttribute('aria-checked', 'false');
   });
 
   it('switches to 2 Colors mode when 2 Colors button is clicked', async () => {
@@ -1029,7 +1031,8 @@ describe('CropModal — brightness/only2Colors passed to computePreviewBrightnes
     });
   }
 
-  it('calls computePreviewBrightness with default brightness=50, only2Colors=false (5-color mode)', async () => {
+  it('calls computePreviewBrightness with default brightness=50, only2Colors=true when no cookie is present', async () => {
+    clearColorModeCookie();
     computePreviewBrightness.mockReturnValue(new Array(169).fill(0));
     render(<CropModal isOpen={true} file={mockFile} onClose={vi.fn()} onConfirm={vi.fn()} />);
     await loadImage();
@@ -1039,7 +1042,7 @@ describe('CropModal — brightness/only2Colors passed to computePreviewBrightnes
       computePreviewBrightness.mock.calls[computePreviewBrightness.mock.calls.length - 1];
     // brightness is 8th argument (index 7), only2Colors is 9th (index 8)
     expect(lastCall[7]).toBe(50);
-    expect(lastCall[8]).toBe(false);
+    expect(lastCall[8]).toBe(true);
   });
 
   it('calls computePreviewBrightness with updated brightness after slider change', async () => {
