@@ -65,7 +65,7 @@ export default function App() {
           textAlign: 'center',
         }}
       >
-        An app for designing and sharing Toyph glyph patterns for Nothing Phone (4a) Pro. Download
+        An app for designing and sharing Toyph glyph patterns ffor Nothing Phone (4a) Pro. Download
         JSON and use it in{' '}
         <a
           href="https://github.com/antonvidishchev/toyph"
@@ -78,7 +78,7 @@ export default function App() {
           onMouseEnter={(e) => (e.target.style.color = '#66b3ff')}
           onMouseLeave={(e) => (e.target.style.color = '#4da6ff')}
         >
-          Toyph application
+          Toyph applicationpplicatio
         </a>{' '}
         to deploy patterns with effects on your phone.
         <br />
@@ -102,6 +102,22 @@ export default function App() {
         </a>{' '}
         know about this project — they could add QR support to add patterns with just a QR code
         scan!
+        <br />
+        View the source on{' '}
+        <a
+          href="https://github.com/antonvidishchev/nothing-toyph-glyph-generator"
+          style={{
+            color: '#4da6ff',
+            textDecoration: 'none',
+            borderBottom: '1px solid #4da6ff',
+            transition: 'color 0.2s ease',
+          }}
+          onMouseEnter={(e) => (e.target.style.color = '#66b3ff')}
+          onMouseLeave={(e) => (e.target.style.color = '#4da6ff')}
+        >
+          GitHub
+        </a>
+        .
       </p>
     </div>
   );
